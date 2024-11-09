@@ -10,6 +10,7 @@ final ThemeData lightTheme = ThemeData(
   textTheme: const TextTheme(
     bodyLarge: TextStyle(color: Colors.black),
     bodyMedium: TextStyle(color: Colors.black),
+    titleMedium: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,),
   ),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(

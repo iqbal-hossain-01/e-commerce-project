@@ -1,8 +1,8 @@
+import 'package:e_commerce_app/models/dashboard_model.dart';
 import 'package:e_commerce_app/providers/auth_provider.dart';
 import 'package:e_commerce_app/screens/auth/login_screen.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:e_commerce_app/widgets/dashboard_item_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -32,6 +32,19 @@ class DashboardScreen extends ConsumerWidget {
             ),
           ),
         ],
+      ),
+      body: GridView.builder(
+        itemCount: dashboardItems.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 12,
+          crossAxisSpacing: 12,
+          childAspectRatio: 1,
+        ),
+        itemBuilder: (context, index) {
+          final item = dashboardItems[index];
+          return DashboardItemView(dashboardModel: item);
+        },
       ),
     );
   }

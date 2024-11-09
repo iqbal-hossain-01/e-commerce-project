@@ -11,6 +11,7 @@ final ThemeData darkTheme = ThemeData(
   textTheme: const TextTheme(
     bodyLarge: TextStyle(color: Colors.white),
     bodyMedium: TextStyle(color: Colors.white),
+    titleMedium: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,),
   ),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
