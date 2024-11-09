@@ -15,6 +15,7 @@ dependencies:
 
   cupertino_icons: ^1.0.6
   flutter_riverpod:
+  go_router:
   intl:
   connectivity_plus:
   image_picker:
@@ -23,6 +24,7 @@ dependencies:
   firebase_auth:
   firebase_storage:
   cloud_firestore:
+  provider:
 
 dev_dependencies:
   flutter_test:
