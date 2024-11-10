@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/models/dashboard_model.dart';
 import 'package:e_commerce_app/providers/auth_provider.dart';
+import 'package:e_commerce_app/providers/category_provider.dart';
 import 'package:e_commerce_app/screens/auth/login_screen.dart';
 import 'package:e_commerce_app/widgets/dashboard_item_view.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,10 @@ class DashboardScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.read(categoryProvider.notifier).getCategories();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        title: Text('Dashboard', style: Theme.of(context).textTheme.headlineLarge,),
         actions: [
           TextButton.icon(
             onPressed: () {

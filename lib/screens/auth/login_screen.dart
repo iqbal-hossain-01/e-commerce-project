@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/providers/auth_provider.dart';
 import 'package:e_commerce_app/screens/dashboard/dashboard_screen.dart';
 import 'package:e_commerce_app/utils/constants.dart';
+import 'package:e_commerce_app/utils/helper_functions.dart';
 import 'package:e_commerce_app/widgets/custom_button.dart';
 import 'package:e_commerce_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -65,11 +66,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       return null;
                     }),
                 const SizedBox(height: 24),
-                Consumer(
-                  builder: (context, ref, child) {
-                    return CustomButton(text: 'Log in as Admin', onPressed: _loginAdmin);
-                  },
-                ),
+                CustomButton(text: 'Log in as Admin', onPressed: _loginAdmin),
                 const SizedBox(
                   height: 16,
                 ),
@@ -94,6 +91,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         status: 'Please wait...',
         maskType: EasyLoadingMaskType.black
       );
+      configLoading();
       /*
       try {
         await ref.read(firebaseAuthProvider.notifier).login(email, password);

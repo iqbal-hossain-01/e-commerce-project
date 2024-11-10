@@ -47,29 +47,30 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDRdPDeog8Dk8UBYpbMsXlJGVh27FRRyBE',
-    appId: '1:247198476840:web:42b9110cc196ad940da31d',
-    messagingSenderId: '247198476840',
-    projectId: 'e-commerce-projects-d0287',
-    authDomain: 'e-commerce-projects-d0287.firebaseapp.com',
-    storageBucket: 'e-commerce-projects-d0287.firebasestorage.app',
-    measurementId: 'G-EDKF79DPVF',
+    apiKey: 'AIzaSyCzvqkjfuChtHIEcx_u7JXR5jcxHwjDE_0',
+    appId: '1:445543926352:web:fa923f5f248988fa86df55',
+    messagingSenderId: '445543926352',
+    projectId: 'my-ecom-project01-9486a',
+    authDomain: 'my-ecom-project01-9486a.firebaseapp.com',
+    storageBucket: 'my-ecom-project01-9486a.appspot.com',
+    measurementId: 'G-02W79Z5DN2',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA6V_U1jre8HJDg7iDFS8lKB25U9v9dXN4',
-    appId: '1:247198476840:android:97bc053a539ca8b50da31d',
-    messagingSenderId: '247198476840',
-    projectId: 'e-commerce-projects-d0287',
-    storageBucket: 'e-commerce-projects-d0287.firebasestorage.app',
+    apiKey: 'AIzaSyC2BpgKo7bowkGvZi4ukS5cvTwmSW_jyrU',
+    appId: '1:445543926352:android:a11d4744394f39d886df55',
+    messagingSenderId: '445543926352',
+    projectId: 'my-ecom-project01-9486a',
+    storageBucket: 'my-ecom-project01-9486a.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAwdqeDtFOYqm4hG2GnOoWQv5YFzvpcIGk',
-    appId: '1:247198476840:ios:b5b56eedd1a673990da31d',
-    messagingSenderId: '247198476840',
-    projectId: 'e-commerce-projects-d0287',
-    storageBucket: 'e-commerce-projects-d0287.firebasestorage.app',
+    apiKey: 'AIzaSyAA5OEip8vPr2u_nslp1_U6f8Wg4_neHGA',
+    appId: '1:445543926352:ios:ab562a78c3bf655f86df55',
+    messagingSenderId: '445543926352',
+    projectId: 'my-ecom-project01-9486a',
+    storageBucket: 'my-ecom-project01-9486a.appspot.com',
     iosBundleId: 'com.example.eCommerceApp',
   );
+
 }

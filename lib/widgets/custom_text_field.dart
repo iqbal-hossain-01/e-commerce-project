@@ -25,18 +25,21 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       textField: true,
-      child: TextFormField(
-        controller: controller,
-        keyboardType: keyboardType,
-        obscureText: obscureText,
-        decoration: InputDecoration(
-          labelText: labelText,
-          prefixIcon: prefixIcon,
-          border: const OutlineInputBorder(),
-          labelStyle: Theme.of(context).textTheme.bodyMedium,
-          contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: TextFormField(
+          controller: controller,
+          keyboardType: keyboardType,
+          obscureText: obscureText,
+          decoration: InputDecoration(
+            labelText: labelText,
+            prefixIcon: prefixIcon,
+            border: const OutlineInputBorder(),
+            labelStyle: Theme.of(context).textTheme.bodyMedium,
+            contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+          ),
+          validator: validator,
         ),
-        validator: validator,
       ),
     );
   }

@@ -19,7 +19,7 @@ class DashboardItemView extends StatelessWidget {
             children: [
               Icon(
                 dashboardModel.iconData,
-                color: Colors.blueGrey,
+                color: Colors.deepPurple,
                 size: 30,
               ),
               const SizedBox(

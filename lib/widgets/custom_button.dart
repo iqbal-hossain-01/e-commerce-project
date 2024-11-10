@@ -9,12 +9,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       button: true,
-
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Theme.of(context).primaryColorDark,
-          textStyle: Theme.of(context).textTheme.labelLarge,
-        ),
         onPressed: onPressed,
         child: Text(text),
       ),
