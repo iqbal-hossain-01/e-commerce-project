@@ -41,6 +41,7 @@ class _AddEditProductScreenState extends ConsumerState<AddEditProductScreen> {
   final TextEditingController _tagController = TextEditingController();
   final TextEditingController _colorController = TextEditingController();
   final TextEditingController _sizeController = TextEditingController();
+
   //final TextEditingController _additionalImageController = TextEditingController();
   List<XFile> additionalImageFiles = [];
 
@@ -95,7 +96,7 @@ class _AddEditProductScreenState extends ConsumerState<AddEditProductScreen> {
                                     localImagePath = null;
                                   });
                                 },
-                                icon: const Icon(Icons.cancel))
+                                icon: const Icon(Icons.remove_circle, color: Colors.red,),)
                             : const Icon(null),
                       ),
                     ],
@@ -210,7 +211,7 @@ class _AddEditProductScreenState extends ConsumerState<AddEditProductScreen> {
               data: (categories) {
                 return Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8,),
                   child: DropdownButtonFormField<CategoryModel>(
                     value: selectedCategory,
                     items: categories.map((category) {
@@ -247,94 +248,176 @@ class _AddEditProductScreenState extends ConsumerState<AddEditProductScreen> {
               labelText: 'Tags',
               validator: (value) => null,
             ),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  if (_tagController.text.isNotEmpty) {
-                    tags.add(_tagController.text);
-                    _tagController.clear();
-                  }
-                });
-              },
-              child: const Text('Add Tag'),
+            if (tags.isNotEmpty)
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: tags.map((tag) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
+                      child: Expanded(
+                        child: Chip(
+                          label: Text(tag),
+                          deleteIcon: const Icon(Icons.remove_circle_outline),
+                          onDeleted: () {
+                            setState(() {
+                              tags.remove(tag);
+                            });
+                          },
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8,),
+              child: ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    if (_tagController.text.isNotEmpty) {
+                      tags.add(_tagController.text);
+                      _tagController.clear();
+                    }
+                  });
+                },
+                child: const Text('Add Tag'),
+              ),
             ),
             CustomTextField(
               controller: _colorController,
               labelText: 'Colors',
               validator: (value) => null,
             ),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  if (_colorController.text.isNotEmpty) {
-                    colors.add(_colorController.text);
-                    _colorController.clear();
-                  }
-                });
-              },
-              child: const Text('Add Color'),
+            if (colors.isNotEmpty)
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: colors.map((color) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
+                      child: Expanded(
+                        child: Chip(
+                          label: Text(color),
+                          deleteIcon: const Icon(Icons.remove_circle_outline),
+                          onDeleted: () {
+                            setState(() {
+                              tags.remove(color);
+                            });
+                          },
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8,),
+              child: ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    if (_colorController.text.isNotEmpty) {
+                      colors.add(_colorController.text);
+                      _colorController.clear();
+                    }
+                  });
+                },
+                child: const Text('Add Color'),
+              ),
             ),
             CustomTextField(
               controller: _sizeController,
               labelText: 'Sizes',
+              keyboardType: TextInputType.number,
               validator: (value) => null,
             ),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  if (_sizeController.text.isNotEmpty) {
-                    sizes.add(_sizeController.text);
-                    _sizeController.clear();
-                  }
-                });
-              },
-              child: const Text('Add Size'),
-            ),
-            /*
-            CustomTextField(
-              controller: _additionalImageController,
-              labelText: 'Additional Image URL',
-              validator: (value) => null,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  if (_additionalImageController.text.isNotEmpty) {
-                    additionalImages.add(_additionalImageController.text);
-                    _additionalImageController.clear();
-                  }
-                });
-              },
-              child: const Text('Add Additional Image'),
-            ),
-
-             */
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: _pickAdditionalImage,
-                  child: const Text('Pick Additional Image'),
+            if (sizes.isNotEmpty)
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: sizes.map((size) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
+                      child: Expanded(
+                        child: Chip(
+                          label: Text(size),
+                          deleteIcon: const Icon(Icons.remove_circle_outline),
+                          onDeleted: () {
+                            setState(() {
+                              tags.remove(size);
+                            });
+                          },
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
-                const SizedBox(width: 10,),
-                if (additionalImageFiles.isNotEmpty)
-                  Expanded(child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: additionalImageFiles.map((file) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 8),
-                          child: Image.file(
-                            File(file.path),
-                            width: 100,
-                            height: 100,
-                            fit: BoxFit.cover,
+              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8,),
+              child: ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    if (_sizeController.text.isNotEmpty) {
+                      sizes.add(_sizeController.text);
+                      _sizeController.clear();
+                    }
+                  });
+                },
+                child: const Text('Add Size'),
+              ),
+            ),
+            if (additionalImageFiles.isNotEmpty)
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: additionalImageFiles.asMap().entries.map((entry) {
+                    int index = entry.key;
+                    XFile file = entry.value;
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: Stack(children: [
+                        Image.file(
+                          File(file.path),
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
+                        ),
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                additionalImageFiles.removeAt(index);
+                              });
+                            },
+                            icon: const Icon(
+                              Icons.remove_circle,
+                              color: Colors.red,
+                            ),
                           ),
-                        );
-                      }).toList(),
-                    ),
-                  )),
-              ],
+                        ),
+                      ]),
+                    );
+                  }).toList(),
+                ),
+              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8,),
+              child: ElevatedButton(
+                onPressed: _pickAdditionalImage,
+                child: const Text('Pick Additional Image'),
+              ),
             ),
           ],
         ),
@@ -353,6 +436,7 @@ class _AddEditProductScreenState extends ConsumerState<AddEditProductScreen> {
       });
     }
   }
+
   Future<void> _pickAdditionalImage() async {
     final picker = ImagePicker();
     final XFile? pickedFile = await picker.pickImage(
@@ -378,17 +462,19 @@ class _AddEditProductScreenState extends ConsumerState<AddEditProductScreen> {
         final mainImageUrl = await ref
             .read(productProvider.notifier)
             .uploadImageToStorage(localImagePath!);
-        
+
         List<String> additionalImageUrls = [];
         for (var file in additionalImageFiles) {
           try {
-            final imageUrl = await ref.read(productProvider.notifier).uploadImageToStorage(file.path);
+            final imageUrl = await ref
+                .read(productProvider.notifier)
+                .uploadImageToStorage(file.path);
             additionalImageUrls.add(imageUrl);
           } catch (e) {
             showMsg(context, 'Failed to upload additional image: $e');
           }
         }
-        
+
         final product = ProductModel(
           productName: _nameController.text,
           categoryModel: selectedCategory!,
@@ -434,6 +520,4 @@ class _AddEditProductScreenState extends ConsumerState<AddEditProductScreen> {
       sizes.clear();
     });
   }
-
-
 }
