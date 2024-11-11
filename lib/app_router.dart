@@ -4,6 +4,7 @@ import 'package:e_commerce_app/screens/categories/category_list_screen.dart';
 import 'package:e_commerce_app/screens/dashboard/dashboard_screen.dart';
 import 'package:e_commerce_app/screens/orders/order_list_screen.dart';
 import 'package:e_commerce_app/screens/products/add_edit_product_screen.dart';
+import 'package:e_commerce_app/screens/products/product_detail_screen.dart';
 import 'package:e_commerce_app/screens/products/product_list_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -30,6 +31,11 @@ class AppRouter{
         name: CategoryListScreen.routeName,
         path: CategoryListScreen.routeName,
         builder: (context, state) => const CategoryListScreen(),
+      ),
+      GoRoute(
+        name: ProductDetailScreen.routeName,
+        path: ProductDetailScreen.routeName,
+        builder: (context, state) => const ProductDetailScreen(),
       ),
       GoRoute(
         name: ProductListScreen.routeName,

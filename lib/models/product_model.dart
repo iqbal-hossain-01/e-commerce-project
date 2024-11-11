@@ -1,6 +1,7 @@
 
 import 'package:e_commerce_app/models/category_model.dart';
 
+// Add available
 
 class ProductModel {
   String? id;
@@ -81,6 +82,10 @@ class ProductModel {
       createdAt: map['createdAt'] != null ? DateTime.parse(map['createdAt']) : null,
       updatedAt: map['updatedAt'] != null ? DateTime.parse(map['updatedAt']) : null,
     );
+  }
+  num get priceAfterDiscount {
+    if (discount == 0) return price;
+    return price - ((price * discount) / 100);
   }
 }
 

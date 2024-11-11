@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:e_commerce_app/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';

@@ -5,21 +5,45 @@ import 'package:e_commerce_app/services/firestore_service.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final productProvider = StateNotifierProvider<ProductNotifier, AsyncValue<String>>(
+final singleProductProvider = FutureProvider.family<ProductModel, String>(
+    (ref, id) {
+      final product =  ref.read(productProvider.notifier).getProductFromListById(id);
+      return product;
+    }
+);
+
+final productProvider = StateNotifierProvider<ProductNotifier, AsyncValue<List<ProductModel>>>(
   (ref) => ProductNotifier(),
 );
 
-class ProductNotifier extends StateNotifier<AsyncValue<String>> {
+class ProductNotifier extends StateNotifier<AsyncValue<List<ProductModel>>> {
   ProductNotifier() : super(const AsyncValue.loading());
 
-  Future<void> addNewProduct(ProductModel model) async {
+  List<ProductModel> productList = [];
+
+  Future<void> getProducts() async {
     try {
-      state = const AsyncValue.loading();
-      await FirestoreService.addProduct(model);
-      state = const AsyncValue.data('Product added successfully');
-    } catch (e, stackTrace) {
+      FirestoreService.fetchProducts().listen((snapshot){
+         productList = List.generate(snapshot.docs.length,
+            (index) => ProductModel.fromMap(snapshot.docs[index].data()));
+        state = AsyncValue.data(productList);
+      });
+    } catch (e, stackTrace){
       state = AsyncValue.error(e, stackTrace);
     }
+  }
+
+  ProductModel getProductFromListById(String id) {
+    return productList.firstWhere((product) => product.id == id);
+  }
+
+  Future<void> updateSingleProductField(String id, String field, dynamic value) {
+    return FirestoreService.updateSingleProductField(id, field, value,);
+  }
+
+  Future<void> addNewProduct(ProductModel model) async {
+    await FirestoreService.addProduct(model);
+    await getProducts();
   }
 
   Future<String> uploadImageToStorage(String localPath) async {

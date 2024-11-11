@@ -161,6 +161,7 @@ class _AddEditProductScreenState extends ConsumerState<AddEditProductScreen> {
             CustomTextField(
               controller: _priceController,
               labelText: 'Product Price',
+              keyboardType: TextInputType.number,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Product price is empty';
@@ -254,20 +255,16 @@ class _AddEditProductScreenState extends ConsumerState<AddEditProductScreen> {
                 child: Row(
                   children: tags.map((tag) {
                     return Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
-                      child: Expanded(
-                        child: Chip(
-                          label: Text(tag),
-                          deleteIcon: const Icon(Icons.remove_circle_outline),
-                          onDeleted: () {
-                            setState(() {
-                              tags.remove(tag);
-                            });
-                          },
-                        ),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Chip(
+                        //padding: const EdgeInsets.all(8),
+                        label: Text(tag),
+                        deleteIcon: const Icon(Icons.remove_circle_outline),
+                        onDeleted: () {
+                          setState(() {
+                            tags.remove(tag);
+                          });
+                        },
                       ),
                     );
                   }).toList(),
@@ -298,20 +295,15 @@ class _AddEditProductScreenState extends ConsumerState<AddEditProductScreen> {
                 child: Row(
                   children: colors.map((color) {
                     return Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
-                      child: Expanded(
-                        child: Chip(
-                          label: Text(color),
-                          deleteIcon: const Icon(Icons.remove_circle_outline),
-                          onDeleted: () {
-                            setState(() {
-                              tags.remove(color);
-                            });
-                          },
-                        ),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Chip(
+                        label: Text(color),
+                        deleteIcon: const Icon(Icons.remove_circle_outline),
+                        onDeleted: () {
+                          setState(() {
+                            tags.remove(color);
+                          });
+                        },
                       ),
                     );
                   }).toList(),
@@ -343,20 +335,15 @@ class _AddEditProductScreenState extends ConsumerState<AddEditProductScreen> {
                 child: Row(
                   children: sizes.map((size) {
                     return Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
-                      child: Expanded(
-                        child: Chip(
-                          label: Text(size),
-                          deleteIcon: const Icon(Icons.remove_circle_outline),
-                          onDeleted: () {
-                            setState(() {
-                              tags.remove(size);
-                            });
-                          },
-                        ),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Chip(
+                        label: Text(size),
+                        deleteIcon: const Icon(Icons.remove_circle_outline),
+                        onDeleted: () {
+                          setState(() {
+                            tags.remove(size);
+                          });
+                        },
                       ),
                     );
                   }).toList(),
@@ -481,7 +468,9 @@ class _AddEditProductScreenState extends ConsumerState<AddEditProductScreen> {
           description: _descriptionController.text,
           price: double.parse(_priceController.text),
           stock: int.parse(_stockController.text),
-          discount: int.parse(_discountController.text),
+          discount: _discountController.text.isEmpty
+              ? 0
+              : int.parse(_discountController.text),
           sku: _skuController.text,
           brand: _brandController.text,
           imageUrl: mainImageUrl,

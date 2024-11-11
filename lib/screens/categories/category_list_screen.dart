@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/providers/category_provider.dart';
 import 'package:e_commerce_app/utils/helper_functions.dart';
+import 'package:e_commerce_app/widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -47,7 +48,7 @@ class CategoryListScreen extends ConsumerWidget {
           );
         },
         error: (error, stack) => Center(child: Text('Error: $error'),),
-        loading: () => const Center(child: CircularProgressIndicator(),),
+        loading: () => const Center(child: LoadingIndicator(),),
       ),
     );
   }

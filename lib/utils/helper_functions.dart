@@ -61,6 +61,7 @@ void configLoading() {
 showSingleTextInputDialog({
   required BuildContext context,
   required String title,
+  TextInputType textInputType = TextInputType.text,
   String positiveButtonText = 'Save',
   String negativeButtonText = 'Cancel',
   required Function(String) onSave,
@@ -74,6 +75,7 @@ showSingleTextInputDialog({
         padding: const EdgeInsets.all(8.0),
         child: TextField(
           controller: controller,
+          keyboardType: textInputType,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
             hintText: 'Enter $title',
